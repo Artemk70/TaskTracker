@@ -21,7 +21,7 @@ public class Task implements Serializable {
     private String name;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status_of_the_task", columnDefinition = "enum('ToDo','InProgress','Done')")
+    @Column(name = "status", columnDefinition = "enum('ToDo','InProgress','Done')")
     private StatusOfTheTask statusOfTheTask;
 
     @Column(name = "description")

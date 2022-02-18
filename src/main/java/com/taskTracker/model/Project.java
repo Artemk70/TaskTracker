@@ -28,7 +28,7 @@ public class Project implements Serializable {
     private LocalDateTime completionDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status_of_the_project", columnDefinition = "enum('NotStarted','Active','Completed')")
+    @Column(name = "status", columnDefinition = "enum('NotStarted','Active','Completed')")
     private StatusOfTheProject statusOfTheProject;
 
     @Column(name = "priority")

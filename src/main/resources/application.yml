@@ -7,12 +7,19 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/task_tracker?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false&&serverTimezone=UTC
-    username: root
-    password: eaHo34!390Ssvl
+    username: ENC(m9oQEfoMqnSxjNe45c8u5w==)
+    password: ENC(6DXWFIbXQ6ZJ6L+eKoPd0FzzI6s+2YVw)
+  liquibase:
+    change-log: /db/changelog/changelog-master.xml
+    enabled: true
   jpa:
-    show-sql: false
     hibernate:
       dialect: org.hibernate.dialect.MySQL8Dialect
-      ddl-auto: create-drop
+      ddl-auto: validate
+
+jasypt:
+  encryptor:
+    bean: encryptorBean
+
 
 
