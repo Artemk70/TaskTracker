@@ -1,6 +1,3 @@
-server:
-  port: 5000
-
 spring:
   main:
     allow-bean-definition-overriding: true
@@ -20,6 +17,7 @@ spring:
 jasypt:
   encryptor:
     bean: encryptorBean
+
 
 
 
