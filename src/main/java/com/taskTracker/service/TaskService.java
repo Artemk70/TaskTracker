@@ -57,17 +57,4 @@ public class TaskService {
             return 0;
         }
     }
-
-    public Task taskDaoToTask(RequestTask requestTask) {
-        Task task = new Task();
-        task.setName(requestTask.getName());
-        task.setDescription(requestTask.getDescription());
-        task.setStatusOfTheTask(requestTask.getStatusOfTheTask());
-        return task;
-    }
-
-    private Project findProjectById(long projectId) {
-        Optional<Project> optionalProject = projectRepository.findById(projectId);
-        return optionalProject.orElseGet(() -> projectRepository.save(new Project()));
-    }
 }
