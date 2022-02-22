@@ -7,6 +7,7 @@ import com.taskTracker.repository.ProjectRepository;
 import com.taskTracker.repository.TaskRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -38,13 +39,10 @@ public class TaskService {
         return optionalTask.orElseGet(Task::new);
     }
 
-    public Task update(long id, RequestTask requestTask) {
-        Optional<Task> optionalTask = taskRepository.findById(id);
-        Task task = optionalTask.orElseGet(Task::new);
-        if (optionalTask.isPresent()) {
-            task.setName(requestTask.getName());
-        }
-        return taskRepository.save(task);
+    @Transactional
+    public void update(long id, RequestTask requestTask) {
+        taskRepository.update(id, requestTask.getName(), requestTask.getStatusOfTheTask(),
+                requestTask.getDescription(), requestTask.getProjectId());
     }
 
 

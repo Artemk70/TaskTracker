@@ -3,6 +3,7 @@ package com.taskTracker.model;
 import com.taskTracker.model.enums.StatusOfTheProject;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "project")
 @Getter
 @Setter
+@ToString
 public class Project implements Serializable {
 
     @Id

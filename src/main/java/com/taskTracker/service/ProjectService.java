@@ -5,6 +5,7 @@ import com.taskTracker.model.Project;
 import com.taskTracker.repository.ProjectRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -31,14 +32,14 @@ public class ProjectService {
         return optionalProject.orElseGet(Project::new);
     }
 
-    public Project update(long id, RequestProject requestProject) {
-        Optional<Project> optionalProject = projectRepository.findById(id);
-        Project project = optionalProject.orElseGet(Project::new);
-        if (optionalProject.isPresent()) {
-            project.setName(requestProject.getName());
-            project.setPriority(requestProject.getPriority());
+    @Transactional
+    public void update(long id, RequestProject requestProject) throws Exception {
+        if (projectRepository.getById(id).getId() == id) {
+            projectRepository.update(id, requestProject.getName(), requestProject.getStatusOfTheProject(),
+                    requestProject.getPriority());
+        } else {
+            throw new Exception("The project with this id does not exist");
         }
-        return projectRepository.save(project);
     }
 
     public long delete(long id) {

@@ -19,25 +19,26 @@ public class TaskController {
     private final TaskService taskService;
 
     @Operation(summary = "create task")
-    @PostMapping("/task/create")
+    @PostMapping("/tasks")
     public ResponseEntity<?> create(@RequestBody RequestTask requestTask) {
         return new ResponseEntity<>(taskService.create(requestTask), HttpStatus.OK);
     }
 
     @Operation(summary = "view task")
-    @GetMapping("/task/{id}")
+    @GetMapping("/tasks/{id}")
     public ResponseEntity<Task> view(@PathVariable long id) {
         return new ResponseEntity<>(taskService.view(id), HttpStatus.OK);
     }
 
     @Operation(summary = "update task")
-    @PostMapping("/task/{id}")
+    @PutMapping("/tasks/{id}")
     public ResponseEntity<?> update(@PathVariable long id, @RequestBody RequestTask requestTask) {
-        return new ResponseEntity<>(taskService.update(id, requestTask), HttpStatus.OK);
+        taskService.update(id, requestTask);
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
     @Operation(summary = "delete task")
-    @DeleteMapping("/task/{id}")
+    @DeleteMapping("/tasks/{id}")
     public ResponseEntity<?> delete(@PathVariable long id) {
         return new ResponseEntity<>(taskService.delete(id), HttpStatus.OK);
     }

@@ -2,6 +2,9 @@ package com.taskTracker.model;
 
 import com.taskTracker.model.enums.StatusOfTheTask;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -10,7 +13,9 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "task")
-@Data
+@Getter
+@Setter
+@ToString
 public class Task implements Serializable {
 
     @Id

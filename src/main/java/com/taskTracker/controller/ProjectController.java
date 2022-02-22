@@ -20,25 +20,26 @@ public class ProjectController {
     private final ProjectService projectService;
 
     @Operation(summary = "create project")
-    @PostMapping("/project/create")
+    @PostMapping("/projects")
     public ResponseEntity<?> create(@RequestBody RequestProject requestProject) {
         return new ResponseEntity<>(projectService.create(requestProject), HttpStatus.OK);
     }
 
     @Operation(summary = "view project")
-    @GetMapping("/project/{id}")
+    @GetMapping("/projects/{id}")
     public ResponseEntity<Project> view(@PathVariable long id) {
         return new ResponseEntity<>(projectService.view(id), HttpStatus.OK);
     }
 
     @Operation(summary = "update project")
-    @PostMapping("/project/{id}")
-    public ResponseEntity<?> update(@PathVariable long id, @RequestBody RequestProject requestProject) {
-        return new ResponseEntity<>(projectService.update(id, requestProject), HttpStatus.OK);
+    @PutMapping("/projects/{id}")
+    public ResponseEntity<?> update(@PathVariable long id, @RequestBody RequestProject requestProject) throws Exception {
+        projectService.update(id, requestProject);
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
     @Operation(summary = "delete project")
-    @DeleteMapping("/project/{id}")
+    @DeleteMapping("/projects/{id}")
     public ResponseEntity<?> delete(@PathVariable long id) {
         return new ResponseEntity<>(projectService.delete(id), HttpStatus.OK);
     }
