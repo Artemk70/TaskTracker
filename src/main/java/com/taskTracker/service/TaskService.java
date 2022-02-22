@@ -40,19 +40,17 @@ public class TaskService {
     }
 
     @Transactional
-    public void update(long id, RequestTask requestTask) {
-        taskRepository.update(id, requestTask.getName(), requestTask.getStatusOfTheTask(),
-                requestTask.getDescription(), requestTask.getProjectId());
+    public void update(long id, RequestTask requestTask) throws Exception {
+        if (taskRepository.getById(id).getId() == id) {
+            taskRepository.update(id, requestTask.getName(), requestTask.getStatusOfTheTask(),
+                    requestTask.getDescription(), requestTask.getProjectId());
+        } else {
+            throw new Exception("The project with this id does not exist");
+        }
     }
 
 
-    public long delete(long id) {
-        Optional<Task> optionalTask = taskRepository.findById(id);
-        if (optionalTask.isPresent()) {
-            taskRepository.deleteById(id);
-            return id;
-        } else {
-            return 0;
-        }
+    public void delete(long id) {
+        taskRepository.deleteById(id);
     }
 }

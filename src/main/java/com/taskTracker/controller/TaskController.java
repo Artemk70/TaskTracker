@@ -32,7 +32,7 @@ public class TaskController {
 
     @Operation(summary = "update task")
     @PutMapping("/tasks/{id}")
-    public ResponseEntity<?> update(@PathVariable long id, @RequestBody RequestTask requestTask) {
+    public ResponseEntity<?> update(@PathVariable long id, @RequestBody RequestTask requestTask) throws Exception {
         taskService.update(id, requestTask);
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
@@ -40,6 +40,6 @@ public class TaskController {
     @Operation(summary = "delete task")
     @DeleteMapping("/tasks/{id}")
     public ResponseEntity<?> delete(@PathVariable long id) {
-        return new ResponseEntity<>(taskService.delete(id), HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 }

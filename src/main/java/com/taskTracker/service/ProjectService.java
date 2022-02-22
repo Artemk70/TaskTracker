@@ -42,13 +42,7 @@ public class ProjectService {
         }
     }
 
-    public long delete(long id) {
-        Project project = projectRepository.getById(id);
-        if (project.getId() == id) {
-            projectRepository.deleteById(id);
-            return id;
-        } else {
-            return 0;
-        }
+    public void delete(long id) {
+        projectRepository.deleteById(id);
     }
 }
