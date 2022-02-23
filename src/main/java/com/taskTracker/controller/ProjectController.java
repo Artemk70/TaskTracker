@@ -21,7 +21,7 @@ public class ProjectController {
 
     @Operation(summary = "create project")
     @PostMapping("/projects")
-    public ResponseEntity<?> create(@RequestBody RequestProject requestProject) {
+    public ResponseEntity<Long> create(@RequestBody RequestProject requestProject) {
         return new ResponseEntity<>(projectService.create(requestProject), HttpStatus.OK);
     }
 
@@ -41,6 +41,7 @@ public class ProjectController {
     @Operation(summary = "delete project")
     @DeleteMapping("/projects/{id}")
     public ResponseEntity<?> delete(@PathVariable long id) {
+        projectService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
