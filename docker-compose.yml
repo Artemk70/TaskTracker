@@ -11,3 +11,12 @@ services:
       MYSQL_PASSWORD: xoQu1@}j9P{p
     ports:
       - "3307:3306"
+  back_container:
+    restart: always
+    image: openjdk:11
+    volumes:
+      - ./jars:/app
+    working_dir: /app
+    command: java -jar taskTracker-0.0.1-SNAPSHOT.jar
+    ports:
+      - "8090:8090"
